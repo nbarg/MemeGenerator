@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+    <title>Can we make things</title>
+    <script>
+        function dothing() {
+            document.getElementById("toptext").innerHTML = document.getElementById("toptextin").value;
+        }
+        function dothing2() {
+            document.getElementById("bottomtext").innerHTML = document.getElementById("bottomtextin").value;
+        }
+        function loadpic() {
+            var img = new Image();
+            img.src = 'http://hdwpics.com/images/2743D5558525/Skyrim-Dragon.jpg';
+            document.getElementById("thepic").width = img.width;
+            document.getElementById("thepic").height = img.height;
+        }
+    </script>
+    <style>
+        div#toptext {
+            text-align : center;
+            font-family:Impact;
+            color:white;
+            font-size:50px;
+            stroke-width: 2px;
+            stroke:black;
+            -webkit-text-stroke: 2px black;
+        }
+        div#bottomtext {
+            text-align : center;
+            font-family:Impact;
+            color:white;
+            font-size:50px;
+            stroke-width: 2px;
+            stroke:black;
+            -webkit-text-stroke: 2px black;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td id="thepic" style="background:url(http://hdwpics.com/images/2743D5558525/Skyrim-Dragon.jpg);">
+                <div id="toptext">HI</div>
+                <div id="bottomtext">BYE</div>
+            </td>
+            <td>
+                <input type="text" id="toptextin" />
+                <input type="button" onclick="dothing()" value="Button" /> <br />
+                <input type="text" id="bottomtextin" />
+                <input type="button" onclick="dothing2()" value="Button" />
+            </td>
+        </tr>
+    </table>
+    <input type="button" onclick="loadpic()" value="LoadPicture" />
+</body>
+</html>
