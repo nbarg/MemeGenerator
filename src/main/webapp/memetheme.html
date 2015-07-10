@@ -10,15 +10,21 @@ and open the template in the editor.
     <script>
         function dothing() {
             document.getElementById("toptext").innerHTML = document.getElementById("toptextin").value;
+            document.getElementById("toptext").style.width = document.getElementById("thepic").width;
         }
         function dothing2() {
             document.getElementById("bottomtext").innerHTML = document.getElementById("bottomtextin").value;
+            document.getElementById("bottomtext").style.width = document.getElementById("thepic").width;
         }
         function loadpic() {
             var img = new Image();
-            img.src = 'http://hdwpics.com/images/2743D5558525/Skyrim-Dragon.jpg';
+            img.src = document.getElementById("picurl").value;
+            document.getElementById("thepic").style.background = "url(" + img.src + ")";
             document.getElementById("thepic").width = img.width;
             document.getElementById("thepic").height = img.height;
+            document.getElementById("toptext").style.width = document.getElementById("thepic").width;
+            document.getElementById("bottomtext").style.width = document.getElementById("thepic").width;
+            console.log("Width: " + document.getElementById("thepic").width + " : " + document.getElementById("toptext").style.width + " : " + document.getElementById("bottomtext").style.width);
         }
     </script>
     <style>
@@ -30,6 +36,9 @@ and open the template in the editor.
             stroke-width: 2px;
             stroke:black;
             -webkit-text-stroke: 2px black;
+            word-wrap:break-word;
+            position: absolute;
+            top: 10px;
         }
         div#bottomtext {
             text-align : center;
@@ -39,6 +48,12 @@ and open the template in the editor.
             stroke-width: 2px;
             stroke:black;
             -webkit-text-stroke: 2px black;
+            word-wrap:break-word;
+            position: absolute;
+            bottom: 10px;
+        }
+        td#thepic {
+            position:relative;
         }
     </style>
 </head>
@@ -57,6 +72,7 @@ and open the template in the editor.
             </td>
         </tr>
     </table>
+    <input type="text" id="picurl" value="http://hdwpics.com/images/2743D5558525/Skyrim-Dragon.jpg">
     <input type="button" onclick="loadpic()" value="LoadPicture" />
 </body>
 </html>
