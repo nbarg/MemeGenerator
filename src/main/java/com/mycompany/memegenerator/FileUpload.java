@@ -17,6 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.openide.filesystems.FileUtil;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -25,6 +29,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 @WebServlet(name = "FileUpload", urlPatterns = {"/FileUpload"})
 public class FileUpload extends HttpServlet {
 private final String UPLOAD_DIRECTORY = "C:/uploads";
+private BufferedImage uploadImage;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,7 +49,11 @@ private final String UPLOAD_DIRECTORY = "C:/uploads";
                 for (FileItem item : multiparts) {
                     if (!item.isFormField()) {
                         String name = new File(item.getName()).getName();
-                        item.write(new File(UPLOAD_DIRECTORY + File.separator + name));
+                        //uploadImage = toFile(item);
+                        //item.write(new File(UPLOAD_DIRECTORY + File.separator + name));
+                        byte[] image = item.get();
+                        uploadImage = ImageIO.read(new ByteArrayInputStream(image));
+                        ImageIO.write(uploadImage, "jpg", new File("C:\\uploads","snap.jpg"));
                     }
                 }
 
@@ -102,5 +111,7 @@ private final String UPLOAD_DIRECTORY = "C:/uploads";
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+   
 
 }
