@@ -46,11 +46,13 @@ public class FBresponse extends HttpServlet {
         
         String oauthCode = request.getParameter("code");
         
+        
         try {
             facebook.getOAuthAccessToken(oauthCode);
         } catch (FacebookException ex) {
-            Logger.getLogger(FBPost.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FBresponse.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         
         try {
             facebook.postPhoto(med);
