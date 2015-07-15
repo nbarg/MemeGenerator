@@ -5,32 +5,25 @@
  */
 package com.mycompany.memegenerator;
 
-import java.io.File;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.List;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.openide.filesystems.FileUtil;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author nathanael
  */
-@WebServlet(name = "FileUpload", urlPatterns = {"/FileUpload"})
-public class FileUpload extends HttpServlet {
-private final String UPLOAD_DIRECTORY = "C:/uploads";
-private BufferedImage uploadImage;
+@WebServlet(name = "DisplayImage", urlPatterns = {"/DisplayImage"})
+public class DisplayImage extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,41 +35,14 @@ private BufferedImage uploadImage;
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (ServletFileUpload.isMultipartContent(request)) {
-            try {
-                List<FileItem> multiparts = new ServletFileUpload(
-                        new DiskFileItemFactory()).parseRequest(request);
+        HttpSession session = request.getSession();
 
-                for (FileItem item : multiparts) {
-                    if (!item.isFormField()) {
-                        String name = new File(item.getName()).getName();
-                        byte[] byteImage = item.get();
-                        uploadImage = ImageIO.read(new ByteArrayInputStream(byteImage));
-                        //ImageIO.write(uploadImage, "jpg", new File("C:\\uploads","snap.jpg"));
-                        
-                        // get session
-                        HttpSession session = request.getSession();
-                        session.setAttribute("byteImage", byteImage);
-                        session.setAttribute("uploadImage", uploadImage);
-                        
-                    }
-                }
-
-                //File uploaded successfully
-                request.setAttribute("message", "File Uploaded Successfully");
-            } catch (Exception ex) {
-                request.setAttribute("message", "File Upload Failed due to " + ex);
-            }
-
-        } else {
-            request.setAttribute("message",
-                    "Sorry this Servlet only handles file upload request");
-        }
-
-        request.getRequestDispatcher("/nateMeme.jsp").forward(request, response);
-
+        BufferedImage image = (BufferedImage) session.getAttribute("uploadImage");
+        response.setContentType("image/jpeg");
+        OutputStream out = response.getOutputStream();
+        ImageIO.write(image, "jpg", out);
+        out.close();
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -116,7 +82,5 @@ private BufferedImage uploadImage;
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-   
 
 }
