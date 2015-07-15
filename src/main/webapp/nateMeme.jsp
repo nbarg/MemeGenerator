@@ -17,7 +17,7 @@
             }
             function loadpic() {
                 var img = new Image();
-                img.src = 'http://hdwpics.com/images/2743D5558525/Skyrim-Dragon.jpg';
+                img.src = 'DisplayImage';
                 document.getElementById("thepic").width = img.width;
                 document.getElementById("thepic").height = img.height;
                 document.getElementById("toptext").width = img.height;
@@ -43,26 +43,33 @@
                 stroke:black;
                 -webkit-text-stroke: 2px black;
             }
+            #wrapper{
+                 
+            }
+            #image {
+               
+               height: 75%;
+              
+            }
+            img{
+                //position:absolute;
+                margin:auto;
+                top:0;
+                bottom:0;
+                left:0;
+                right:0;
+                height: 100%;   
+            }
         </style>
     </head>
     <body>
-        <table>
-            <tr>
-                <td id="thepic" style="background:url(http://hdwpics.com/images/2743D5558525/Skyrim-Dragon.jpg);">
-                    <textarea id="toptext">HI</textarea>
-                    <textarea id="bottomtext">BYE</textarea>
-                </td>
-                <td>
-                    <input type="text" id="toptextin" />
-                    <input type="button" onclick="dothing()" value="Button" /> <br />
-                    <input type="text" id="bottomtextin" />
-                    <input type="button" onclick="dothing2()" value="Button" />
-                </td>
-            </tr>
-        </table>
-        <input type="button" onclick="loadpic()" value="LoadPicture" />
-        <h3>File Upload:</h3>
-        Select a file to upload: <br />
+        
+            <div id="image">
+                <img src="DisplayImage" alt="Select an image to upload!">
+            </div>
+        
+        <h3>Image Upload:</h3>
+        Select an image to upload: <br />
         <form action="FileUpload" method="post" enctype="multipart/form-data">
             <input type="file" name="file" size="50" />
             <br />
