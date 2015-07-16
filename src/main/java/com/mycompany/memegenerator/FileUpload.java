@@ -73,7 +73,7 @@ private BufferedImage uploadImage;
                     "Sorry this Servlet only handles file upload request");
         }
 
-        request.getRequestDispatcher("/nateMeme.jsp").forward(request, response);
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
 
     }
     

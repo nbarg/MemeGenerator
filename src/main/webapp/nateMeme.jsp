@@ -75,6 +75,11 @@
             <br />
             <input type="submit" value="Upload File" />
         </form>
+        <form action="WordAdder" method="POST">
+            <input type="text" name="toptext">
+            <input type="text" name="bottomtext">
+            <input type="submit" value="Submit">
+        </form>
     </body>
 </html>
 
