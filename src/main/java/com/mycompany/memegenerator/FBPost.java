@@ -33,10 +33,9 @@ public class FBPost extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Facebook facebook = new FacebookFactory().getInstance();
-        File file = new File("C:\\Users\\Harvey\\Desktop\\episode456.jpg");
+        Facebook facebook = new FacebookFactory().getInstance();        
         request.getSession().setAttribute("facebook", facebook);
-        request.getSession().setAttribute("pic", file);
+        
         
         StringBuffer requestUrl = request.getRequestURL();
         int lastSlashIndex = requestUrl.lastIndexOf("/");

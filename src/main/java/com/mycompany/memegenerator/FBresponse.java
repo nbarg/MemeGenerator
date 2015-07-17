@@ -8,9 +8,10 @@ package com.mycompany.memegenerator;
 import facebook4j.Facebook;
 import facebook4j.FacebookException;
 import facebook4j.Media;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
+import javax.imageio.ImageIO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -40,7 +41,10 @@ public class FBresponse extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         Facebook facebook = (Facebook)request.getSession().getAttribute("facebook");
-        File file = (File)request.getSession().getAttribute("pic");
+        BufferedImage img = (BufferedImage)request.getSession().getAttribute("uploadImage");
+        
+        File file = new File("image.jpg");
+        ImageIO.write(img, "jpg", file);
         
         Media med = new Media(file);
         
@@ -59,18 +63,7 @@ public class FBresponse extends HttpServlet {
         } catch (FacebookException ex) {
             Logger.getLogger(FBresponse.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try (PrintWriter out = response.getWriter()) {
-           
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>FBresponse</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Posted to Facebook!</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        response.sendRedirect("index.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

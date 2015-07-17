@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
-        <title>Meme G   enerator</title>
+        <title>Meme Generator</title>
         <script>
 
         </script>
@@ -69,6 +69,9 @@
                 Text for top of image: <input type="text" name="toptext" id="toptext">
                 Text for bottom of image: <input type="text" name="bottomtext" id="bottomtext">
                 <input type="submit" value="Submit">
+            </form>
+            <form id="fb" action="FBPost" method="POST">
+                <input type="submit" value="Post to Facebook">
             </form>
         </div>
     </body>
