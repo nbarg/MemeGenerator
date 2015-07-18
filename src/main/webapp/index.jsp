@@ -76,7 +76,7 @@
                 <input type="submit" value="Add Text">
             </form>
             <form id="fb" action="FBPost" method="POST">
-                <input type="submit" value="Post to Facebook">
+                <input type="submit" value="Post to Facebook" disabled>
             </form>
         </div>
     </body>
