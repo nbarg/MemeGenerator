@@ -20,7 +20,7 @@
             }
             #image {
 
-                height: 76%;    
+                height: 74%;    
 
             }
             img{
@@ -33,7 +33,7 @@
                 bottom:0;
                 left:0;
                 right:0;
-                height: 73%;   
+                height: 70%;   
                 top: 0%;
                 border: black solid;
                 border-width: 2px;
@@ -49,6 +49,11 @@
             }
             h1{
                 text-align: center;
+            }
+            #words{
+                position: relative;
+                left: 15%;
+                float: left;
             }
         </style>
     </head>
@@ -68,7 +73,7 @@
             <form id="words" action="WordAdder" method="POST">
                 Text for top of image: <input type="text" name="toptext" id="toptext">
                 Text for bottom of image: <input type="text" name="bottomtext" id="bottomtext">
-                <input type="submit" value="Submit">
+                <input type="submit" value="Add Text">
             </form>
             <form id="fb" action="FBPost" method="POST">
                 <input type="submit" value="Post to Facebook">
